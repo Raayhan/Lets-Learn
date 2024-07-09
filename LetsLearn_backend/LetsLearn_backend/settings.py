@@ -22,6 +22,8 @@ INSTALLED_APPS = [
     'corsheaders', 
     'djoser',
 
+    'student',
+
 ]
 
 MIDDLEWARE = [
@@ -54,6 +56,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'LetsLearn_backend.wsgi.application'
+
 
 
 # Database
