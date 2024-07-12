@@ -60,6 +60,9 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requireLogin) && !store.state.isAuthenticated) {
     next({ name: 'SignIn', query: { to: to.path } });
   }
+  if ((to.name === 'SignIn' || to.name === 'SignUp') && store.state.isAuthenticated) {
+    next({ name: 'Dashboard' })
+  } 
   else {
     next()
   }
