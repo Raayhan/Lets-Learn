@@ -12,6 +12,7 @@ path('api/v1/', include('djoser.urls.authtoken')),
 
 path('api/v1/user/', UserDetailView.as_view(), name='user-detail'),
 path('api/v1/', include('student.urls')), 
+path('api/v1/', include('course.urls')), 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
 

@@ -51,7 +51,7 @@ export default {
       slides: [
         '<div class="bg-pink-100 py-32 text-pink-800"><div class="text-7xl">&#9885;</div><div><h2 class="text-4xl font-bold">Learning that gets you</h2></div><div> <p>Skills for your present (and your future). Get started with us.</p></div></div>',
         '<div class="bg-sky-100 py-32 text-sky-800"><div class="text-8xl">&#8734;</div><div><h2 class="text-4xl font-bold -mt-4">Learn without limits</h2></div><div> <p>Start, switch, or advance your career with more than 7,000 courses, Professional Certificates, and degrees from world-class universities and companies.</p></div></div>',
-        '<div class="bg-green-100 py-32 text-green-800"><div class="text-7xl">&#10144;</div><h2 class="text-4xl font-bold">Skills that drive you forward</h2><p>Technology and the world of work change fast — with us, you’re faster. Get the skills to achieve goals and stay competitive.</p></div>',
+        '<div class="bg-gray-100 py-32 text-gray-800"><div class="text-7xl">&#10144;</div><h2 class="text-4xl font-bold">Skills that drive you forward</h2><p>Technology and the world of work change fast — with us, you’re faster. Get the skills to achieve goals and stay competitive.</p></div>',
         
        
         
