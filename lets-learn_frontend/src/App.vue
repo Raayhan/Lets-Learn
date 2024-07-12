@@ -5,7 +5,7 @@
         <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
           <!-- Mobile menu button-->
           <button type="button" @click="isOpenMobile = !isOpenMobile"
-            class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+            class="relative inline-flex items-center justify-center rounded-md p-1 text-violet-800 hover:bg-violet-100 hover:text-violet-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-violet-800"
             aria-controls="mobile-menu" aria-expanded="false">
             <span class="absolute -inset-0.5"></span>
             <span class="sr-only">Open main menu</span>
@@ -30,7 +30,7 @@
           </button>
         </div>
         <div class="flex items-center justify-center sm:items-stretch sm:justify-start">
-          <div class="flex text-white flex-shrink-0 items-center font-bold">
+          <div class="flex text-white flex-shrink-0 items-center ml-10 md:ml-0 font-bold">
             <router-link to="/" class="flex text-violet-800">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="size-6 mr-1">
@@ -44,10 +44,15 @@
           <div class="hidden sm:ml-6 sm:block">
             <div class="ml-6 space-x-6">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-              <router-link to="/" class="text-violet-800 hover:font-bold text-sm">Courses</router-link>
-              <router-link to="/about" class="text-violet-800 hover:font-bold text-sm">About</router-link>
-              <router-link to="/applications" v-if="$store.state.isAuthenticated"
-                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Applications</router-link>
+              <router-link to="/dashboard" v-if="$store.state.isAuthenticated"
+                class="text-violet-800 text-sm hover:bg-violet-100 px-2 py-1 rounded duration-300">Dashboard</router-link>
+              <router-link to="/courses"
+                class="text-violet-800 text-sm hover:bg-violet-100 px-2 py-1 rounded duration-300">Courses</router-link>
+              <router-link to="/categories"
+                class="text-violet-800 text-sm hover:bg-violet-100 px-2 py-1 rounded duration-300">Categories</router-link>
+              <router-link to="/about"
+                class="text-violet-800 text-sm hover:bg-violet-100 px-2 py-1 rounded duration-300">About</router-link>
+
 
             </div>
           </div>
@@ -56,16 +61,18 @@
 
 
           <!-- Profile dropdown -->
-          <div class="relative ml-3 flex">
+          <div class="relative ml-3 flex invisible md:visible">
             <template v-if="!$store.state.isAuthenticated">
-              <router-link class="relative flex text-violet-800 text-sm mr-4 hover:font-bold" to="/sign-in">Sign
+              <router-link class="relative flex text-violet-800 text-sm hover:bg-pink-100 text-sm px-2 py-1 rounded"
+                to="/sign-in">Sign
                 in</router-link>
             </template>
 
             <template v-if="$store.state.isAuthenticated">
               <div>
-                <button @click="isOpen = !isOpen" class="relative flex rounded-full bg-gray-800 text-white text-sm"
-                  id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                <button @click="isOpen = !isOpen"
+                  class="relative flex text-violet-800 bg-pink-100 text-sm px-2 py-1 rounded" id="user-menu-button"
+                  aria-expanded="false" aria-haspopup="true">
                   <span class="absolute -inset-1.5"></span>
                   <span class="sr-only">Open user menu</span>
                   {{ currentUser ? currentUser.first_name + ' ' + currentUser.last_name : 'Loading...' }}
@@ -89,7 +96,7 @@
 
 
               <div v-if="isOpen"
-                class="absolute right-0 z-10 mt-6 w-48 duration-300 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                class="absolute right-0 z-10 mt-8 w-48 duration-300 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                 role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                 <!-- Active: "bg-gray-100", Not Active: "" -->
                 <ul>
@@ -115,11 +122,18 @@
     <div v-if="isOpenMobile" class="sm:hidden" id="mobile-menu">
       <div class="space-y-1 px-2 pb-3 pt-2">
         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-        <router-link to="/"
-          class=" text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
-          aria-current="page">Jobs</router-link>
-        <router-link to="/applications" v-if="$store.state.isAuthenticated"
-          class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Applications</router-link>
+        <div>
+          <router-link to="/sign-in" v-if="!$store.state.isAuthenticated" class="text-violet-800 text-sm font-medium"
+            aria-current="page">Sign in</router-link>
+        </div>
+        <div>
+          <router-link to="/" class="text-violet-800 text-sm font-medium" aria-current="page">Courses</router-link>
+        </div>
+        <div>
+          <router-link to="/dashboard" v-if="$store.state.isAuthenticated"
+            class="text-violet-800 text-sm font-medium">Dashboard</router-link>
+        </div>
+
       </div>
     </div>
   </nav>

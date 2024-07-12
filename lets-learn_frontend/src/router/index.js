@@ -3,6 +3,11 @@ import HomeView from '../views/HomeView.vue'
 import SignIn from '@/views/auth/SignIn.vue'
 import AboutView from '@/views/AboutView.vue'
 import SignUp from '@/views/auth/SignUp.vue'
+import Dashboard from '@/views/Dashboard.vue'
+import Courses from '@/views/Courses.vue'
+import Categories from '@/views/Categories.vue'
+
+import store from '../store'
 
 const routes = [
   {
@@ -25,6 +30,25 @@ const routes = [
     name: 'SignUp',
     component: SignUp
   },
+  {
+    path: '/courses',
+    name: 'Courses',
+    component: Courses
+  },
+  {
+    path: '/categories',
+    name: 'Categories',
+    component: Categories
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: Dashboard,
+    meta: {
+      requireLogin:true
+    }
+
+  },
 ]
 
 const router = createRouter({
@@ -32,4 +56,12 @@ const router = createRouter({
   routes
 })
 
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requireLogin) && !store.state.isAuthenticated) {
+    next({ name: 'SignIn', query: { to: to.path } });
+  }
+  else {
+    next()
+  }
+})
 export default router

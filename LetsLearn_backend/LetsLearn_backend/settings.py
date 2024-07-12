@@ -91,13 +91,30 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
+
+DJOSER = {
+    'SERIALIZERS': {
+        #'user_create': 'LetsLearn_backend.serializers.CustomUserCreateSerializer',
+        #'user_update': 'DIJobs.serializers.CustomUserUpdateSerializer',
+        'user'       : 'LetsLearn_backend.serializers.UserSerializer',
+    },
+    'SET_PASSWORD_RETYPE' : True
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Dhaka'
 
 USE_I18N = True
 
