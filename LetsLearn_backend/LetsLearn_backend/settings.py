@@ -102,8 +102,8 @@ REST_FRAMEWORK = {
 
 DJOSER = {
     'SERIALIZERS': {
-        #'user_create': 'LetsLearn_backend.serializers.CustomUserCreateSerializer',
-        #'user_update': 'DIJobs.serializers.CustomUserUpdateSerializer',
+        'user_create': 'LetsLearn_backend.serializers.CustomUserCreateSerializer',
+        'user_update': 'DIJobs.serializers.CustomUserUpdateSerializer',
         'user'       : 'LetsLearn_backend.serializers.UserSerializer',
     },
     'SET_PASSWORD_RETYPE' : True
