@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Category,Course
-from ckeditor.widgets import CKEditorWidget
+from django_ckeditor_5.widgets import CKEditor5Widget
 from django import forms
 
 
@@ -9,11 +9,16 @@ class CategoryList(admin.ModelAdmin):
 
 
 class CourseForm(forms.ModelForm):
-    description = forms.CharField(widget=CKEditorWidget())
+    description = forms.CharField(widget=CKEditor5Widget())
 
     class Meta:
         model = Course
         fields = '__all__'
+        widgets = {
+              "text": CKEditor5Widget(
+                  attrs={"class": "django_ckeditor_5"}, config_name="comment"
+              )
+          }
 
 class CourseAdmin(admin.ModelAdmin):
     form = CourseForm
