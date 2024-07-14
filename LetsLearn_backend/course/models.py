@@ -2,9 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User
 from django_ckeditor_5.fields import CKEditor5Field
 
+from io import BytesIO
+from PIL import Image
+
+from django.core.files import File
+
+
 class Category(models.Model):
-    name  = models.CharField(max_length=255)
-    slug  = models.SlugField()
+    name  = models.CharField(max_length=255,unique=True)
+    slug  = models.SlugField(unique=True)
     image = models.ImageField(upload_to='uploads/categories',blank=True,null=True)
 
     class Meta:
@@ -20,16 +26,30 @@ class Category(models.Model):
         return f'/{self.slug}/'
 
     def get_image(self):
-        if self.image:
-            return 'http://127.0.0.1:8000' + self.image.url
-        return ''
+        self.image = self.make_thumbnail(self.image)
+        self.save()
+                
+        return 'http://127.0.0.1:8000' + self.image.url
+       
+
+    def make_thumbnail(self,image, size=(600,400)):
+        img = Image.open(image)
+        img.convert('RGB')
+        img.image(size)
+
+        thumb_io = BytesIO()
+        img.save(thumb_io,'JPEG')
+
+        image = File(thumb_io, name=image.name)
+
+        return image
 
 class Course(models.Model):
     
     category    = models.ForeignKey(Category,related_name='courses', on_delete=models.CASCADE)
-    title       = models.CharField(max_length=100)
+    title       = models.CharField(max_length=100,unique=True)
     summary     = models.CharField(max_length=255)
-    slug        = models.SlugField()
+    slug        = models.SlugField(unique=True)
     author      = models.ForeignKey(User,related_name='courses', on_delete=models.CASCADE)
     description = CKEditor5Field('Text', config_name='extends')
     date_added  = models.DateTimeField(auto_now_add=True)
