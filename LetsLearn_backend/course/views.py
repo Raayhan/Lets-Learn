@@ -4,8 +4,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
-from .models import Category
+from .models import Category,Course
 from .serializers import CategorySerializer
+from .serializers import CourseSerializer
 
 
 class LatestCategoriesList(APIView):
@@ -28,4 +29,13 @@ class CategoryDetail(APIView):
     def get(self, request, category_slug, format=None):
         category = self.get_object(category_slug)
         serializer = CategorySerializer(category)
+        return Response(serializer.data)
+
+
+class CourseList(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request, format=None):
+        courses = Course.objects.all()[0:16]
+        serializer = CourseSerializer(courses, many=True)
         return Response(serializer.data)

@@ -51,4 +51,4 @@ class Course(models.Model):
     
     
     def get_absolute_url(self):
-        return f'/{self.category.slug}/{self.slug}/'
+        return f'/courses/{self.category.slug}/{self.slug}/'

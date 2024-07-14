@@ -5,7 +5,7 @@
     <div v-if="$store.state.setIsLoading" class="flex justify-center mt-4">
         <Loading/>
     </div>
-    <div class="grid grid-cols-4 gap-4 mt-4 mx-2">
+    <div class="grid grid-cols-5 gap-4 mt-4 mx-2">
         
             <CategoryBox v-for="category in latestCategories" v-bind:key="category.id" v-bind:category="category"></CategoryBox>
        
