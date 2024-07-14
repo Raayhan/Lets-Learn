@@ -23,27 +23,13 @@ class Category(models.Model):
     
     
     def get_absolute_url(self):
-        return f'/{self.slug}/'
+        return f'/categories/{self.slug}/'
 
     def get_image(self):
-        self.image = self.make_thumbnail(self.image)
-        self.save()
-                
-        return 'http://127.0.0.1:8000' + self.image.url
+        if self.image:
+            return 'http://127.0.0.1:8000' + self.image.url
+        return ''
        
-
-    def make_thumbnail(self,image, size=(600,400)):
-        img = Image.open(image)
-        img.convert('RGB')
-        img.thumbnail(size)
-
-        thumb_io = BytesIO()
-        img.save(thumb_io,'JPEG')
-
-        image = File(thumb_io, name=image.name)
-
-        return image
-
 class Course(models.Model):
     
     category    = models.ForeignKey(Category,related_name='courses', on_delete=models.CASCADE)

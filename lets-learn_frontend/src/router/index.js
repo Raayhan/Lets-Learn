@@ -41,6 +41,11 @@ const routes = [
     component: Categories
   },
   {
+    path: '/categories/:category_slug/',
+    name: 'Category',
+    
+  },
+  {
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard,
