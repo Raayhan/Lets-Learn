@@ -35,7 +35,7 @@ class Category(models.Model):
     def make_thumbnail(self,image, size=(600,400)):
         img = Image.open(image)
         img.convert('RGB')
-        img.image(size)
+        img.thumbnail(size)
 
         thumb_io = BytesIO()
         img.save(thumb_io,'JPEG')
