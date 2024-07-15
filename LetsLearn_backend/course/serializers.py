@@ -8,22 +8,18 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'first_name', 'last_name']
 
-class CourseSerializer(serializers.ModelSerializer):
+class CourseBoxSerializer(serializers.ModelSerializer):
 
     category = serializers.SerializerMethodField()
     author   = UserSerializer(read_only=True)
     class Meta:
         model = Course
         fields = (
-            "id",
             "title",
-            "summary",
             "category",
+            "get_image",
             "author",
-            "description",
-            "get_absolute_url",
-            "date_added",
-           
+            "get_absolute_url",          
             
         )
     def get_category(self, obj):
@@ -31,11 +27,10 @@ class CourseSerializer(serializers.ModelSerializer):
 
 class CategorySerializer(serializers.ModelSerializer):
 
-    courses = CourseSerializer(many=True)
+    courses = CourseBoxSerializer(many=True)
     class Meta:
         model = Category
         fields = (
-            "id",
             "name",
             "get_image",
             "get_absolute_url",

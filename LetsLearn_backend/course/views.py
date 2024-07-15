@@ -6,7 +6,7 @@ from rest_framework.decorators import api_view
 
 from .models import Category,Course
 from .serializers import CategorySerializer
-from .serializers import CourseSerializer
+from .serializers import CourseBoxSerializer
 
 
 class LatestCategoriesList(APIView):
@@ -37,5 +37,5 @@ class CourseList(APIView):
 
     def get(self, request, format=None):
         courses = Course.objects.all()[0:16]
-        serializer = CourseSerializer(courses, many=True)
+        serializer = CourseBoxSerializer(courses, many=True)
         return Response(serializer.data)
