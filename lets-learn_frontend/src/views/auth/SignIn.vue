@@ -1,9 +1,9 @@
 <template>
     <div class="bg-gray-100 min-h-screen">
-        <div class="bg-gradient-to-r from-fuchsia-400 to-pink-400 mt-2 rounded shadow-sm border border-gray-300 py-8">
+        <div class="bg-violet-100 mt-2 rounded py-8 text-gray-600">
 
-            <span class="flex items-center justify-center text-pink-100 font-bold text-xl"> Sign in</span>
-            <span class="flex items-center justify-center text-pink-100 text-sm">Sign in to your account</span>
+            <span class="flex items-center justify-center font-bold text-xl"> Sign in</span>
+            <span class="flex items-center justify-center text-sm">Sign in to your account</span>
 
         </div>
         <div class=" w-full md:w-3/12 px-2 mx-auto mt-12">

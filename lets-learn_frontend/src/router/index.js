@@ -36,6 +36,11 @@ const routes = [
     component: Courses
   },
   {
+    path: '/courses/:category_slug/:course_slug',
+    name: 'CourseDetails',
+    
+  },
+  {
     path: '/categories',
     name: 'Categories',
     component: Categories

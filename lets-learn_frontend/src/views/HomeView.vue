@@ -1,8 +1,8 @@
 <template>
-  <div class="bg-gray-100 mt-1 shadow-sm border border-gray-300 py-8">
-    <span class="flex items-center justify-center text-gray-600 text-lg">Welcome to</span>
-    <span class="flex items-center justify-center text-gray-600 font-bold text-3xl"> Lets Learn</span>
-    <span class="flex items-center justify-center text-gray-600 text-sm">An online intereactive E-learning
+  <div class="bg-violet-100 mt-1 py-8 text-gray-600">
+    <span class="flex items-center justify-center text-lg">Welcome to</span>
+    <span class="flex items-center justify-center font-bold text-3xl"> Lets Learn</span>
+    <span class="flex items-center justify-center text-sm">An online intereactive E-learning
       platform</span>
 
   </div>
