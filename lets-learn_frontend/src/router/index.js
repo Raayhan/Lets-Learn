@@ -6,6 +6,7 @@ import SignUp from '@/views/auth/SignUp.vue'
 import Dashboard from '@/views/Dashboard.vue'
 import Courses from '@/views/Courses.vue'
 import Categories from '@/views/Categories.vue'
+import CourseDetails from '@/views/course/Details.vue'
 
 import store from '../store'
 
@@ -38,6 +39,7 @@ const routes = [
   {
     path: '/courses/:category_slug/:course_slug',
     name: 'CourseDetails',
+    component: CourseDetails
     
   },
   {

@@ -7,6 +7,7 @@ from rest_framework.decorators import api_view
 from .models import Category,Course
 from .serializers import CategorySerializer
 from .serializers import CourseBoxSerializer
+from .serializers import CourseDetailsSerializer
 
 
 class LatestCategoriesList(APIView):
@@ -38,4 +39,18 @@ class CourseList(APIView):
     def get(self, request, format=None):
         courses = Course.objects.all()[0:16]
         serializer = CourseBoxSerializer(courses, many=True)
+        return Response(serializer.data)
+
+class CourseDetail(APIView):
+    permission_classes = [AllowAny]
+
+    def get_object(self,category_slug,course_slug):
+        try:
+            return Course.objects.filter(category__slug=category_slug).get(slug=course_slug)
+        except Course.DoesNotExist:
+            raise Http404
+    
+    def get(self, request, category_slug, course_slug, format=None):
+        course = self.get_object(category_slug, course_slug)
+        serializer = CourseDetailsSerializer(course)
         return Response(serializer.data)

@@ -25,6 +25,23 @@ class CourseBoxSerializer(serializers.ModelSerializer):
     def get_category(self, obj):
         return obj.category.name
 
+class CourseDetailsSerializer(serializers.ModelSerializer):
+
+    category = serializers.SerializerMethodField()
+    author   = UserSerializer(read_only=True)
+    class Meta:
+        model = Course
+        fields = (
+            "title",
+            "summary",
+            "category",
+            "get_image",
+            "author",
+            "description",
+            "date_added" 
+        )
+    def get_category(self, obj):
+        return obj.category.name
 class CategorySerializer(serializers.ModelSerializer):
 
     courses = CourseBoxSerializer(many=True)
