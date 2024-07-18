@@ -57,20 +57,28 @@ class CategorySerializer(serializers.ModelSerializer):
         )
 
 class EnrollmentSerializer(serializers.ModelSerializer):
-
-    course  = CourseBoxSerializer()
+    course = CourseBoxSerializer(read_only=True)
     student = UserSerializer(read_only=True)
+    student_id = serializers.PrimaryKeyRelatedField(queryset=User.objects.all(), source='student', write_only=True)
+    course_id = serializers.PrimaryKeyRelatedField(queryset=Course.objects.all(), source='course', write_only=True)
+
     class Meta:
         model = Enrollment
         fields = (
             "course",
+            "course_id",
             "student",
+            "student_id",
             "enrollment_date",
-            "status"
+            "completion_status"
         )
+
+    def validate(self, data):
+        student = data['student']
+        course = data['course']
         
-    def get_course(self, obj):
-        return obj.course.title
-    
-    def get_student(self, obj):
-        return obj.user.first_name
+        # Check if the enrollment already exists
+        if Enrollment.objects.filter(student=student, course=course).exists():
+            raise serializers.ValidationError("You are already enrolled in this course.")
+        
+        return data

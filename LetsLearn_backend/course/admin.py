@@ -27,6 +27,9 @@ class CourseAdmin(admin.ModelAdmin):
 class CourseList(admin.ModelAdmin):
     list_display = ("title","category","author","slug","date_added")
 
+class EnrollmentList(admin.ModelAdmin):
+    list_display = ("course","student","completion_status","enrollment_date")
+
 admin.site.register(Category,CategoryList)
 admin.site.register(Course,CourseList)
-admin.site.register(Enrollment)
+admin.site.register(Enrollment,EnrollmentList)

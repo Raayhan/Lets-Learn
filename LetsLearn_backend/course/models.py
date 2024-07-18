@@ -62,6 +62,7 @@ class Enrollment(models.Model):
     class Meta:
         ordering = ('enrollment_date',)
         db_table = 'course_enrollments'
+        unique_together = ('course', 'student')
     
     def __str__(self):
-        return self.course
+        return self.course.title

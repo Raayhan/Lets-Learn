@@ -1,6 +1,7 @@
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.http import Http404
 from rest_framework.views import APIView
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
@@ -63,22 +64,17 @@ class GetEnrollment(APIView):
         try:
             course = Course.objects.get(slug=course_slug, category__slug=category_slug)
         except Course.DoesNotExist:
-            
             return Response({"error": "Course not found"}, status=status.HTTP_404_NOT_FOUND)
         
-        if not request.user.is_authenticated:
-           
-            return Response({"error": "User not authenticated"}, status=status.HTTP_401_UNAUTHORIZED)
-        
-        data = request.data.copy()
-        data['student_id'] = request.user.id
-        data['course_id'] = course.id
-        data['completion_status'] = False
+        data = {
+            'student_id': request.user.id,
+            'course_id': course.id,
+            'completion_status': False
+        }
 
-        serializer = EnrollmentSerializer(data=data,context={'request': request})
+        serializer = EnrollmentSerializer(data=data, context={'request': request})
         if serializer.is_valid():
             serializer.save()
-            
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
