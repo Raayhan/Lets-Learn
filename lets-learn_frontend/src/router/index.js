@@ -42,6 +42,15 @@ const routes = [
     component: CourseDetails
     
   },
+    {
+    path: '/courses/:course_slug/enroll',
+    name: 'EnrollCourse',
+      //component: EnrollCourse
+    meta: {
+      requireLogin:true
+    }
+    
+  },
   {
     path: '/categories',
     name: 'Categories',
