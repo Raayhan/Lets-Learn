@@ -10,4 +10,5 @@ urlpatterns = [
 
     path('all-courses',views.CourseList.as_view()),
     path('courses/<slug:category_slug>/<slug:course_slug>',views.CourseDetail.as_view()),
+    path('courses/<slug:category_slug>/<slug:course_slug>/enrollment',views.GetEnrollment.as_view()),
 ]

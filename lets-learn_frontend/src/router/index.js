@@ -44,7 +44,7 @@ const routes = [
     
   },
     {
-    path: '/courses/:category_slug/:course_slug/enroll',
+    path: '/courses/:category_slug/:course_slug/get-started',
     name: 'EnrollCourse',
     component: Enroll,
     meta: {

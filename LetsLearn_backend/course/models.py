@@ -2,11 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django_ckeditor_5.fields import CKEditor5Field
 
-from io import BytesIO
-from PIL import Image
-
-from django.core.files import File
-
 
 class Category(models.Model):
     name  = models.CharField(max_length=255,unique=True)
@@ -56,3 +51,17 @@ class Course(models.Model):
     
     def get_absolute_url(self):
         return f'/courses/{self.category.slug}/{self.slug}/'
+
+class Enrollment(models.Model):
+    
+    course              = models.ForeignKey(Course,related_name='enrollments', on_delete=models.CASCADE)
+    student             = models.ForeignKey(User,related_name='enrollments', on_delete=models.CASCADE)
+    enrollment_date     = models.DateTimeField(auto_now_add=True)
+    completion_status   = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ('enrollment_date',)
+        db_table = 'course_enrollments'
+    
+    def __str__(self):
+        return self.course

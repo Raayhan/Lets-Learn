@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category,Course
+from .models import Category,Course,Enrollment
 from django_ckeditor_5.widgets import CKEditor5Widget
 from django import forms
 
@@ -29,3 +29,4 @@ class CourseList(admin.ModelAdmin):
 
 admin.site.register(Category,CategoryList)
 admin.site.register(Course,CourseList)
+admin.site.register(Enrollment)
