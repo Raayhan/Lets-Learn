@@ -39,15 +39,15 @@
 
                 </div>
             </div>
-            <div class="flex justify-center text-xs text-violet-800 mt-4">
+            <div class="flex justify-center text-xs text-gray-400 mt-2">
                 <span>Published on : {{ formatDate(course.date_added) }}</span>
             </div>
             <div class="flex justify-center mt-6 text-sm">
-                <router-link :to="{ name: 'EnrollCourse', params: { slug: course.slug } }"
-                    class="bg-violet-800 text-white text-center px-3 w-40 py-2 mr-1 rounded-sm border border-gray-300 hover:bg-violet-900 duration-300">Enroll
+                <router-link :to="{ name: 'EnrollCourse', params: { category_slug: category_slug, course_slug: course.slug } }"
+                    class="rounded bg-violet-800 text-white text-center px-3 w-40 py-2 mr-1 border border-gray-300 hover:bg-violet-900 duration-300">Enroll
                     Now</router-link>
                 <button
-                    class="bg-rose-700 text-white px-3 w-40 py-2 rounded-sm border border-gray-300 hover:bg-rose-800 duration-300">Report
+                    class="rounded bg-rose-700 text-white px-3 w-40 py-2 border border-gray-300 hover:bg-rose-800 duration-300">Report
                     Abuse</button>
 
             </div>
@@ -68,6 +68,7 @@ export default {
     data() {
         return {
             course: {},
+            
         }
     },
     components: {

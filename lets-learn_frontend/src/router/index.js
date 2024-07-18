@@ -7,6 +7,7 @@ import Dashboard from '@/views/Dashboard.vue'
 import Courses from '@/views/Courses.vue'
 import Categories from '@/views/Categories.vue'
 import CourseDetails from '@/views/course/Details.vue'
+import Enroll from '@/views/course/Enroll.vue'
 
 import store from '../store'
 
@@ -43,9 +44,9 @@ const routes = [
     
   },
     {
-    path: '/courses/:course_slug/enroll',
+    path: '/courses/:category_slug/:course_slug/enroll',
     name: 'EnrollCourse',
-      //component: EnrollCourse
+    component: Enroll,
     meta: {
       requireLogin:true
     }
